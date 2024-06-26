@@ -1,14 +1,13 @@
 
 import './App.css';
-import MenuAppBar from './appbar';
-//import ButtonAppBar from './appbar';
-
+import MiniDrawer from './drawer';
+import Navbar from './navbar';
 function App() {
   return (
-    <div>
-      < MenuAppBar />
-      
-    </div>
+  <div>
+    <MiniDrawer/>
+    < Navbar/>
+  </div>
   );
 }
 
