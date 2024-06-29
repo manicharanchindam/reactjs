@@ -28,6 +28,7 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ScienceIcon from '@mui/icons-material/Science';
 import TvIcon from '@mui/icons-material/Tv';
+import {useAppStore} from './appstore';
 
 const drawerWidth = 240;
 
@@ -80,27 +81,28 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [ setOpen] = React.useState(true);
+  const open = useAppStore((state) => state.dopen);
 
  
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', backgroundColor:'black' }}>
       <CssBaseline />
-      <Drawer variant="permanent" open={open}>
+      < Box height={30}/>
+      <Drawer variant="permanent" open={open}sx={{backgroundColor:"black"}}>
         <DrawerHeader>
-        <img src='./logo.png' alt='logo' width='160px'></img>
           <IconButton onClick={() => setOpen(!open)}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
           
         </DrawerHeader>
         <Divider />
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper',color:'white', backgroundColor:'black' }}
       component="nav"
       aria-labelledby="categories-subheader"
       subheader={
-        <ListSubheader component="div" id="categories-subheader">
+        <ListSubheader component="div" id="categories-subheader" sx={{backgroundColor:'black',color:'white'}}>
           Categories
         </ListSubheader>
       }>
@@ -118,9 +120,10 @@ export default function MiniDrawer() {
                     minWidth: 0,
                     mr: open ? 3 : 'auto',
                     justifyContent: 'center',
+                    backgroundColor:'black'
                   }}
                 >
-                 {index === 0 ? <LocalMoviesIcon /> : index === 1 ? <StarOutlineIcon /> : <UpcomingIcon /> }
+                 {index === 0 ? <LocalMoviesIcon sx={{color:'white'}}/> : index === 1 ? <StarOutlineIcon sx={{color:'white'}}/> : <UpcomingIcon sx={{color:'white'}}/> }
                 </ListItemIcon>
                 <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
               </ListItemButton>
@@ -128,11 +131,11 @@ export default function MiniDrawer() {
           ))}
         </List >
         <Divider />
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper', backgroundColor:'black' ,color:'white'}}
       component="nav"
       aria-labelledby="genres-subheader"
       subheader={
-        <ListSubheader component="div" id="genres-subheader">
+        <ListSubheader component="div" id="genres-subheader" sx={{backgroundColor:'black', color:'white'}}>
           Genres
         </ListSubheader>
       }>
@@ -152,18 +155,18 @@ export default function MiniDrawer() {
                     justifyContent: 'center',
                   }}
                 >
-                 {index === 0 ? <BoltIcon /> 
- : index === 1 ? <ExploreIcon /> 
- : index === 2 ? <ChildCareSharpIcon /> 
- : index === 3 ? <SentimentVerySatisfiedSharpIcon /> 
- : index === 4 ? <BuildTwoToneIcon /> 
- : index === 5 ? <VideoCameraFrontIcon /> 
- : index === 6 ? <FamilyRestroomIcon /> 
- : index === 7 ? <Face3Icon /> 
- : index === 8 ? <MusicNoteIcon /> 
- : index === 9 ? <FavoriteIcon /> 
- : index === 10 ? <ScienceIcon /> 
- : <TvIcon />
+                 {index === 0 ? <BoltIcon sx={{color:'white'}}/> 
+ : index === 1 ? <ExploreIcon sx={{color:'white'}} /> 
+ : index === 2 ? <ChildCareSharpIcon sx={{color:'white'}}/> 
+ : index === 3 ? <SentimentVerySatisfiedSharpIcon sx={{color:'white'}}/> 
+ : index === 4 ? <BuildTwoToneIcon sx={{color:'white'}}/> 
+ : index === 5 ? <VideoCameraFrontIcon sx={{color:'white'}}/> 
+ : index === 6 ? <FamilyRestroomIcon sx={{color:'white'}}/> 
+ : index === 7 ? <Face3Icon sx={{color:'white'}}/> 
+ : index === 8 ? <MusicNoteIcon sx={{color:'white'}}/> 
+ : index === 9 ? <FavoriteIcon sx={{color:'white'}}/> 
+ : index === 10 ? <ScienceIcon sx={{color:'white'}}/> 
+ : <TvIcon sx={{color:'white'}}/>
 }
 
                 </ListItemIcon>

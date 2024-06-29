@@ -15,7 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-
+import {useAppStore} from './appstore';
 const AppBar = styled(MuiAppBar, {
   })(({ theme,}) => ({
     zIndex: theme.zIndex.drawer + 1,
@@ -64,7 +64,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-
+  const updateOpen = useAppStore((state) => state.updateOpen);
+  const dopen = useAppStore((state) => state.dopen);
+  <img src='./logo.png' alt='logo' width='160px'></img>
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -126,7 +128,7 @@ export default function Navbar() {
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
+          <Badge badgeContent={4} color="inherit">
             <MailIcon />
           </Badge>
         </IconButton>
@@ -161,14 +163,15 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
+            color="red"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={() => updateOpen(!dopen)}
           >
             <MenuIcon />
           </IconButton>
